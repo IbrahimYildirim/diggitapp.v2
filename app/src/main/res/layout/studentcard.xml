@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+   android:weightSum="1">
+
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="reset"
+      android:id="@+id/reset"
+      android:layout_gravity="center_horizontal"
+      android:layout_weight="0.06" />
+
+   <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_weight="0.06"></LinearLayout>
+
+   <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/imageView"
+      android:layout_gravity="center_horizontal"
+      android:layout_weight="0.50" />
+
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="isActive"
+      android:id="@+id/isActive"
+      android:layout_gravity="right"
+      android:layout_weight="0.06" />
+
+   <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="takePicture"
+      android:id="@+id/takePicture"
+      android:layout_gravity="center_horizontal"
+      android:layout_weight="0.06" />
+
+   <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="165dp"
+      android:weightSum="1">
+
+      <TextView
+         android:layout_width="133dp"
+         android:layout_height="wrap_content"
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:id="@+id/userName" />
+   </LinearLayout>
+
+</LinearLayout>
