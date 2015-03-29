@@ -13,12 +13,14 @@ public final class R {
     public static final class drawable {
         public static final int baggrund=0x7f020000;
         public static final int diggit_edit_text=0x7f020001;
-        public static final int header_top=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int login_button=0x7f020004;
-        public static final int logo=0x7f020005;
-        public static final int placeholder=0x7f020006;
-        public static final int student_card=0x7f020007;
+        public static final int gradient_line=0x7f020002;
+        public static final int header_top=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int login_button=0x7f020005;
+        public static final int logo=0x7f020006;
+        public static final int logo_white=0x7f020007;
+        public static final int placeholder=0x7f020008;
+        public static final int student_card=0x7f020009;
     }
     public static final class id {
         public static final int btn_back=0x7f06000f;
@@ -26,6 +28,7 @@ public final class R {
         public static final int diggitLogo=0x7f060006;
         public static final int headerContainer=0x7f060000;
         public static final int imageView=0x7f060002;
+        public static final int imgvSchoolLogo=0x7f060019;
         public static final int isActive=0x7f060010;
         public static final int lblBirthday=0x7f060014;
         public static final int lblBirthdayHeader=0x7f060013;
