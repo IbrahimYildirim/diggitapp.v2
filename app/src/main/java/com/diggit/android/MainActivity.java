@@ -97,16 +97,27 @@ public class MainActivity extends Activity {
                }
             });
 
-      Button isValidButton = (Button) findViewById(R.id.isActive);
-      isValidButton.setOnClickListener(
-            new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                  boolean isValid = ModelFactory.isValid();
-                  Button isValidButton = (Button) findViewById(R.id.isActive);
-                  isValidButton.setText("Valid: " + isValid);
-               }
-            });
+       Button isValidButton = (Button) findViewById(R.id.isActive);
+       isValidButton.setOnClickListener(
+               new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       boolean isValid = ModelFactory.isValid();
+                       Button isValidButton = (Button) findViewById(R.id.isActive);
+                       isValidButton.setText("Valid: " + isValid);
+                   }
+               });
+
+       //Set icons for button - Font Awesome
+       Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/fontawesome-webfont.ttf");
+       takePicture.setTypeface(tf);
+
+       Button btnNextPage = (Button) findViewById(R.id.btn_back);
+       btnNextPage.setTypeface(tf);
+
+       Button btnDeals = (Button) findViewById(R.id.btn_deals);
+       btnDeals.setTypeface(tf);
+
    }
 
    private void renderLogin() {
@@ -134,6 +145,12 @@ public class MainActivity extends Activity {
                   }
                }
             });
+
+       //Set custom font to "Diggit"R Text
+       String fontPath = "fonts/timeburner_regular.ttf";
+       TextView lblDiggit = (TextView)findViewById(R.id.lblDiggitLogin);
+       Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+       lblDiggit.setTypeface(tf);
 
 
    }

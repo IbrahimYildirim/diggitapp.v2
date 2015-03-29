@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <string name="app_name">AndroidDiggitApp</string>
+    <string name="tag_billede">Sæt håret, børst tænderne, smil og tag dit billede til dit nye Diggit Studiekort.</string>
 </resources>

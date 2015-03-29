@@ -3,6 +3,7 @@
     <!-- From: file:/Users/Ibrahim/Desktop/Developer/Android/diggitapp.v2.android2/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">AndroidDiggitApp</string>
+    <string name="tag_billede">Sæt håret, børst tænderne, smil og tag dit billede til dit nye Diggit Studiekort.</string>
     <!-- From: file:/Users/Ibrahim/Desktop/Developer/Android/diggitapp.v2.android2/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="NoActionBar" parent="@android:style/Theme.Holo.Light">

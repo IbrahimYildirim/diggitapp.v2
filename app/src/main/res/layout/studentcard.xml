@@ -1,59 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-   android:weightSum="1">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-   <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="reset"
-      android:id="@+id/reset"
-      android:layout_gravity="center_horizontal"
-      android:layout_weight="0.06" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/baggrund"
+        android:scaleType="centerCrop" />
 
-   <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_weight="0.06"></LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/student_card"
+        android:layout_margin="15dp"
+        android:clipChildren="false">
 
-   <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/imageView"
-      android:layout_gravity="center_horizontal"
-      android:layout_weight="0.50" />
+        <!--Header View-->
+        <RelativeLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/header_top">
 
-   <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="isActive"
-      android:id="@+id/isActive"
-      android:layout_gravity="right"
-      android:layout_weight="0.06" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/btn_deals"
+                android:text="&#xf07a;"
+                android:background="@android:color/transparent"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:layout_margin="5dp" />
 
-   <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="takePicture"
-      android:id="@+id/takePicture"
-      android:layout_gravity="center_horizontal"
-      android:layout_weight="0.06" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_back"
+                android:text="&#xf061;"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:layout_margin="5dp" />
 
-   <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="165dp"
-      android:weightSum="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/btn_deals"
+                android:layout_toLeftOf="@id/btn_back"
+                android:text="Info"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
 
-      <TextView
-         android:layout_width="133dp"
-         android:layout_height="wrap_content"
-         android:textAppearance="?android:attr/textAppearanceMedium"
-         android:id="@+id/userName" />
-   </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:id="@+id/top_seperator"
+            android:layout_below="@+id/headerContainer" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_seperator"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/imageView"
+                android:layout_below="@id/top_seperator"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.9"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@android:color/white" />
+
+            <!--Content Container-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.1">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/white"
+                    android:layout_alignParentTop="true" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="isActive"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/isActive"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="right" />
+
+
+                <!--Name -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Navn"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/lblNameHeader" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="Navn Efternavn"
+                    android:layout_below="@+id/lblNameHeader"
+                    android:id="@+id/lblName"
+                    android:textColor="@android:color/white"
+                    android:layout_marginLeft="10dp" />
+
+                <!--Foedselsdag-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fødselsdag"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/lblBirthdayHeader"
+                    android:layout_below="@+id/lblName" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="DD.MM.YYYY"
+                    android:layout_below="@+id/lblBirthdayHeader"
+                    android:id="@+id/lblBirthday"
+                    android:textColor="@android:color/white"
+                    android:layout_marginLeft="10dp" />
+
+                <!--Skole-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skole"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/lblSkoleHeader"
+                    android:layout_below="@+id/lblName" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="Skole Navn"
+                    android:layout_below="@+id/lblSkoleHeader"
+                    android:id="@+id/lblSkole"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp" />
+
+
+                <!--Student ID-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Studie ID"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/lblStudentIdHeader"
+                    android:layout_below="@+id/lblBirthday" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:text="EX123456"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@+id/lblStudentIdHeader"
+                    android:id="@+id/lblStudentId"
+                    android:layout_marginLeft="10dp" />
+
+                <!--Reset Button -->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="reset"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/reset"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.06" />
+
+
+                <!--Take Image Button-->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xf030;"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/takePicture"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.06" />
+
+            <!--End of StudentInfoContainer-->
+            </RelativeLayout>
+
+        <!--Image And Content Container-->
+        </LinearLayout>
+        
+    <!--Student Card-->
+    </RelativeLayout>
+
+</RelativeLayout>

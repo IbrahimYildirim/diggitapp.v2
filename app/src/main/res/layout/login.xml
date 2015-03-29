@@ -11,19 +11,20 @@
     <ImageView
         android:id="@+id/diggitLogo"
         android:layout_marginTop="50dp"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="120dp"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/logo"
         android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Diggit"
-        android:textSize="30sp"
+        android:id="@+id/lblDiggitLogin"
+        android:textSize="60sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/diggitLogo"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/black"/>
 
 
@@ -40,15 +41,26 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/username"
-            android:text="magn3155" />
+            android:text="magn3155"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:hint="UNI-C ID"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/diggit_edit_text"/>
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:inputType="textPassword"
+            android:background="@drawable/diggit_edit_text"
             android:ems="10"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:hint="Password"
+            android:textColor="@android:color/black"
             android:id="@+id/password"
             android:text="Magn3155" />
 
@@ -59,17 +71,20 @@
         android:id="@+id/loginButtonContainer"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:layout_alignParentBottom="true">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:text="Log på"
             android:width="150dp"
+            android:textColor="#FFFFFF"
             android:id="@+id/loginButton"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_button"/>
 
         <TextView
             android:layout_width="wrap_content"

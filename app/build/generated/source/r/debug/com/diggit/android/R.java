@@ -12,28 +12,49 @@ public final class R {
     }
     public static final class drawable {
         public static final int baggrund=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int diggit_edit_text=0x7f020001;
+        public static final int header_top=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int login_button=0x7f020004;
+        public static final int logo=0x7f020005;
+        public static final int placeholder=0x7f020006;
+        public static final int student_card=0x7f020007;
     }
     public static final class id {
-        public static final int diggitLogo=0x7f060000;
-        public static final int imageView=0x7f060008;
-        public static final int isActive=0x7f060009;
-        public static final int loginButton=0x7f060005;
-        public static final int loginButtonContainer=0x7f060002;
-        public static final int loginButtonResult=0x7f060006;
-        public static final int password=0x7f060004;
-        public static final int reset=0x7f060007;
-        public static final int takePicture=0x7f06000a;
-        public static final int textFields=0x7f060001;
-        public static final int userName=0x7f06000b;
-        public static final int username=0x7f060003;
+        public static final int btn_back=0x7f06000f;
+        public static final int btn_deals=0x7f06000e;
+        public static final int diggitLogo=0x7f060006;
+        public static final int headerContainer=0x7f060000;
+        public static final int imageView=0x7f060002;
+        public static final int isActive=0x7f060010;
+        public static final int lblBirthday=0x7f060014;
+        public static final int lblBirthdayHeader=0x7f060013;
+        public static final int lblDiggitLogin=0x7f060007;
+        public static final int lblName=0x7f060012;
+        public static final int lblNameHeader=0x7f060011;
+        public static final int lblSkole=0x7f060016;
+        public static final int lblSkoleHeader=0x7f060015;
+        public static final int lblStudentId=0x7f060018;
+        public static final int lblStudentIdHeader=0x7f060017;
+        public static final int lbl_tag_billede=0x7f060004;
+        public static final int loginButton=0x7f06000c;
+        public static final int loginButtonContainer=0x7f060009;
+        public static final int loginButtonResult=0x7f06000d;
+        public static final int password=0x7f06000b;
+        public static final int reset=0x7f060003;
+        public static final int takePicture=0x7f060005;
+        public static final int textFields=0x7f060008;
+        public static final int top_seperator=0x7f060001;
+        public static final int username=0x7f06000a;
     }
     public static final class layout {
-        public static final int login=0x7f030000;
-        public static final int studentcard=0x7f030001;
+        public static final int image_picker=0x7f030000;
+        public static final int login=0x7f030001;
+        public static final int studentcard=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+        public static final int tag_billede=0x7f040001;
     }
     public static final class style {
         public static final int NoActionBar=0x7f050000;
