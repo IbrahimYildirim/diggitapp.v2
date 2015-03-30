@@ -37,10 +37,10 @@ public class ModelFactory {
 
    private static final String TAG = "ModelFactory";
 
-   private static String WS_PASSWORD = "IMcOYZnhmCSTBnGqt9MLgR0WkE8=";
-   private static String PROJEKT = "diggit";
-   private static String KONTEKST = "A03855";
-   private static String WS_ID = "wsdiggitap";
+   private final static String WS_PASSWORD = "IMcOYZnhmCSTBnGqt9MLgR0WkE8=";
+   private final static String PROJEKT = "diggit";
+   private final static String KONTEKST = "A03855";
+   private final static String WS_ID = "wsdiggitap";
 
    private static String hmacSha1(String value, String key) {
       try {
@@ -48,7 +48,7 @@ public class ModelFactory {
          SecretKeySpec secret = null;
          Mac mac;
          byte[] keyBytes = key.getBytes("UTF-8");
-         System.out.println("Key bytes -> "+ Arrays.toString(keyBytes));
+         System.out.println("Key bytes -> " + Arrays.toString(keyBytes));
          secret = new SecretKeySpec(keyBytes, type);
          mac = Mac.getInstance(type);
          mac.init(secret);
@@ -66,8 +66,8 @@ public class ModelFactory {
    }
 
    public static String bytesToHex(byte[] raw) {
-      final char[] kDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
-            'b', 'c', 'd', 'e', 'f' };
+      final char[] kDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
+            'b', 'c', 'd', 'e', 'f'};
 
       int length = raw.length;
       char[] hex = new char[length * 2];
@@ -96,7 +96,7 @@ public class ModelFactory {
 
    public static void delete(Context context, String key) {
       try {
-         InternalStorage.writeObject(context,key,null);
+         InternalStorage.writeObject(context, key, null);
       } catch (IOException e) {
          throw new RuntimeException(e);
       }
@@ -104,8 +104,8 @@ public class ModelFactory {
    }
 
    public static class LoginResult {
-      boolean wasSuccessful;
-      String errorMessage;
+      public boolean wasSuccessful;
+      public String errorMessage;
 
       public LoginResult(boolean wasSuccessful, String errorMessage) {
          this.wasSuccessful = wasSuccessful;
@@ -113,13 +113,11 @@ public class ModelFactory {
       }
    }
 
-   static LoginResult postToUNILogin(Context context, String brugerId, String password) {
-
-
+   public static LoginResult postToUNILogin(Context context, String brugerId, String password) {
       String utcTime = String.valueOf(new Date().getTime() / 1000);
 
       String m0 = utcTime + KONTEKST + PROJEKT + brugerId;
-      String k0 = (WS_PASSWORD.concat(ModelFactory.SHA1(password))).replace("\n","").replace("\r","");
+      String k0 = (WS_PASSWORD.concat(ModelFactory.SHA1(password))).replace("\n", "").replace("\r", "");
 
       String auth = hmacSha1(m0, k0);
 
@@ -132,7 +130,7 @@ public class ModelFactory {
       pairs.add(new BasicNameValuePair("Auth", auth));
 
       for (NameValuePair pair : pairs) {
-         Log.i("VALUE",pair.getName()+" -> "+pair.getValue());
+         Log.i("VALUE", pair.getName() + " -> " + pair.getValue());
       }
 
 
@@ -142,27 +140,27 @@ public class ModelFactory {
          int valid = jsonObject.getInt("VALID");
          String digest = jsonObject.getString("DIGEST");
          boolean hasError = jsonObject.has("error");
-         if(hasError){
+         if (hasError) {
             String error = jsonObject.getString("error");
-            return new LoginResult(false,error);
+            return new LoginResult(false, error);
          }
          JSONObject result = ModelFactory.postToOwnServer(brugerId, digest, valid, auth);
          hasError = result.has("error");
          if (hasError) {
-            String error = jsonObject.getString("error");
-            return new LoginResult(false,error);
+            String error = result.getString("error");
+            return new LoginResult(false, error);
          } else {
             getPerson(context).updatePerson(result.getJSONObject("person")).save(context);
             getInstitution(context).updateInstitution(result.getJSONObject("institution")).save(context);
             getProfilePicture(context).updateProfilePicture(result.getJSONObject("profilePicture")).save(context);
-            return new LoginResult(true,"Alt OK");
+            return new LoginResult(true, "Alt OK");
          }
       } catch (Exception e) {
          throw new RuntimeException(e);
       }
    }
 
-   static JSONObject postToOwnServer(
+   public static JSONObject postToOwnServer(
          String brugerId,
          String digest,
          int valid,
@@ -181,7 +179,6 @@ public class ModelFactory {
    }
 
 
-
    private static JSONObject getJSONObjectFromResponse(HttpResponse response) throws IOException, JSONException {
       Reader in = new BufferedReader(
             new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
@@ -196,38 +193,32 @@ public class ModelFactory {
       return new JSONObject(builder.toString());
    }
 
-   public static boolean sendPicture(Bitmap image) {
-      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-      image.compress(Bitmap.CompressFormat.JPEG, 30, byteArrayOutputStream);
-      byte[] byteArray = byteArrayOutputStream .toByteArray();
-
-      String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+   public static boolean sendPicture(Context context) {
+      Person person = getPerson(context);
+      ProfilePicture profilePicture = getProfilePicture(context);
 
       ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
-      data.add(new BasicNameValuePair("brugerId", "toke0969"));
-      data.add(new BasicNameValuePair("imageBase64",encodedImage));
+      data.add(new BasicNameValuePair("brugerId", person.getBrugerid()));
+      data.add(new BasicNameValuePair("imageBase64", "data:image/png;base64,"+profilePicture.profilePicture));
       try {
          JSONObject result = post(data, "http://diggitapp.dk/php/saveimage-v2.php");
-         boolean status = result.getBoolean("status");
-         return status;
-      } catch (IOException e) {
-         throw new RuntimeException(e);
-      } catch (JSONException e) {
+         return result.getBoolean("status");
+      } catch (Exception e) {
          throw new RuntimeException(e);
       }
    }
 
 
-   public static boolean isValid() {
+   public static boolean isValid(Context context) {
+      Person person = getPerson(context);
       ArrayList<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-      params.add(new BasicNameValuePair("brugerId","magn3155"));
-      params.add(new BasicNameValuePair("institutionId","751402"));
+      params.add(new BasicNameValuePair("brugerId", person.getBrugerid()));
+      params.add(new BasicNameValuePair("institutionId", person.getInstnr()));
 
       DefaultHttpClient httpClient = new DefaultHttpClient();
       String uri = "http://diggitapp.dk/php/isvalid.php?" + URLEncodedUtils.format(params, "utf-8");
       HttpGet request = new HttpGet(uri);
-      Log.i("GET",uri);
+      Log.i("GET", uri);
       try {
          JSONObject response = getJSONObjectFromResponse(httpClient.execute(request));
          return response.getBoolean("isValid");
@@ -256,7 +247,7 @@ public class ModelFactory {
       } catch (Exception e) {
          Log.e(TAG, e.getMessage());
       }
-      if(person == null){
+      if (person == null) {
          person = new Person();
       }
       return person;
@@ -269,7 +260,7 @@ public class ModelFactory {
       } catch (Exception e) {
          Log.e(TAG, e.getMessage());
       }
-      if(insitution == null){
+      if (insitution == null) {
          insitution = new Institution();
       }
       return insitution;
@@ -291,7 +282,7 @@ public class ModelFactory {
       } catch (Exception e) {
          Log.e(TAG, e.getMessage());
       }
-      if(profilePicture == null){
+      if (profilePicture == null) {
          profilePicture = new ProfilePicture();
       }
       return profilePicture;
