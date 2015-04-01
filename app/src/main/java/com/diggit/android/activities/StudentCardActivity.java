@@ -1,6 +1,7 @@
 package com.diggit.android.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -29,6 +30,7 @@ public class StudentCardActivity extends Activity {
     private Person loggedPerson;
     private Institution userInstitution;
     private boolean showFront;
+    private int backButtonCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class StudentCardActivity extends Activity {
             setupIfSubscribedInstitution();
         }
         showFront = true;
-
+        backButtonCount = 0;
         setupButtons();
     }
 
@@ -55,6 +57,17 @@ public class StudentCardActivity extends Activity {
 
         Button isValidButton = (Button) findViewById(R.id.isActive);
         isValidButton.setText("Gyldig?");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //Exit to home screen instead of launchactivity
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void setupIfSubscribedInstitution() {
@@ -105,7 +118,6 @@ public class StudentCardActivity extends Activity {
         if (userInstitution.getCvr() != null) {
             lblCvr.setText(userInstitution.getCvr());
         }
-
     }
 
     private void setupButtons() {
@@ -115,7 +127,7 @@ public class StudentCardActivity extends Activity {
         Button btnNextPage = (Button) findViewById(R.id.btn_back);
         btnNextPage.setTypeface(tf);
 
-        Button btnBackToFront = (Button)findViewById(R.id.btn_backToFront);
+        Button btnBackToFront = (Button) findViewById(R.id.btn_backToFront);
         btnBackToFront.setTypeface(tf);
 
         Button btnDeals = (Button) findViewById(R.id.btn_deals);
@@ -188,7 +200,7 @@ public class StudentCardActivity extends Activity {
 
     private void turnCard() {
         ViewGroup studentCardFront = (ViewGroup) findViewById(R.id.card_front);
-        ViewGroup studentCardBack = (ViewGroup)findViewById(R.id.card_back);
+        ViewGroup studentCardBack = (ViewGroup) findViewById(R.id.card_back);
 
         if (showFront) {
             Controller.fadeViewOut(studentCardFront, 0);
