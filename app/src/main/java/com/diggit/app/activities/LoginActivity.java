@@ -1,4 +1,4 @@
-package com.diggit.android.activities;
+package com.diggit.app.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,9 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import com.diggit.android.Controller;
-import com.diggit.android.ModelFactory;
-import com.diggit.android.R;
+import com.diggit.app.Controller;
+import com.diggit.app.ModelFactory;
+import com.diggit.app.R;
 
 public class LoginActivity extends Activity {
    private static final String TAG = LoginActivity.class.getSimpleName();

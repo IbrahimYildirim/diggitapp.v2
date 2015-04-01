@@ -1,4 +1,4 @@
-package com.diggit.android.model;
+package com.diggit.app.model;
 
 import android.content.Context;
 

@@ -1,8 +1,8 @@
-package com.diggit.android.activities;
+package com.diggit.app.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.diggit.android.Controller;
+import com.diggit.app.Controller;
 
 /**
  * Created by tokb on 30-03-2015.

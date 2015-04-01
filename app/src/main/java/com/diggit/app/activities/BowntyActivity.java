@@ -1,6 +1,5 @@
-package com.diggit.android.activities;
+package com.diggit.app.activities;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -16,7 +15,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 
-import static android.widget.LinearLayout.LayoutParams.*;
+import static android.widget.LinearLayout.LayoutParams.WRAP_CONTENT;
 
 /**
  * Created by tokb on 30-03-2015.

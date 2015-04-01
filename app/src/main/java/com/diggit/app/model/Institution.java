@@ -1,7 +1,7 @@
-package com.diggit.android.model;
+package com.diggit.app.model;
 
 import android.content.Context;
-import com.diggit.android.ModelFactory;
+import com.diggit.app.ModelFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.diggit.android;
+package com.diggit.app;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -6,13 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-import com.diggit.android.activities.BowntyActivity;
-import com.diggit.android.activities.LoginActivity;
-import com.diggit.android.activities.SelectImageActivity;
-import com.diggit.android.activities.StudentCardActivity;
-import com.diggit.android.model.Institution;
-import com.diggit.android.model.Person;
-import com.diggit.android.model.ProfilePicture;
+import com.diggit.app.activities.BowntyActivity;
+import com.diggit.app.activities.LoginActivity;
+import com.diggit.app.activities.SelectImageActivity;
+import com.diggit.app.activities.StudentCardActivity;
+import com.diggit.app.model.Institution;
+import com.diggit.app.model.Person;
+import com.diggit.app.model.ProfilePicture;
 
 import java.io.File;
 

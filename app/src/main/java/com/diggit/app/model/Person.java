@@ -1,7 +1,7 @@
-package com.diggit.android.model;
+package com.diggit.app.model;
 
 import android.content.Context;
-import com.diggit.android.ModelFactory;
+import com.diggit.app.ModelFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +35,7 @@ public class Person implements Serializable, ModelObject {
    public Person updatePerson(JSONObject jsonObject) {
       try {
          Navn = getString(jsonObject, "Navn");
-         Brugerid = getString(jsonObject,"Brugerid");
+         Brugerid = getString(jsonObject, "Brugerid");
          Instnr = getString(jsonObject, "Instnr");
          Foedselsdag = getString(jsonObject, "Foedselsdag");
 

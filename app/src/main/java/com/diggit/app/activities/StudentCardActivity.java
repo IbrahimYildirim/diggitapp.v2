@@ -1,4 +1,4 @@
-package com.diggit.android.activities;
+package com.diggit.app.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,13 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.diggit.android.Controller;
-import com.diggit.android.ModelFactory;
-import com.diggit.android.R;
-import com.diggit.android.model.Institution;
-import com.diggit.android.model.Person;
-import com.diggit.android.model.ProfilePicture;
+import com.diggit.app.Controller;
+import com.diggit.app.ModelFactory;
+import com.diggit.app.R;
+import com.diggit.app.model.Institution;
+import com.diggit.app.model.Person;
+import com.diggit.app.model.ProfilePicture;
 
 
 /**

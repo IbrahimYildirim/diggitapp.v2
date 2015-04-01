@@ -1,11 +1,11 @@
-package com.diggit.android.model;
+package com.diggit.app.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
-import com.diggit.android.ModelFactory;
+import com.diggit.app.ModelFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +23,7 @@ public class ProfilePicture implements ModelObject {
 
    public ProfilePicture updateProfilePicture(JSONObject json) {
       try {
-         profilePicture = getString(json,"profilePicture");
+         profilePicture = getString(json, "profilePicture");
          int start = profilePicture.indexOf(",");
          if (start != -1) {
             profilePicture = profilePicture.substring(start);

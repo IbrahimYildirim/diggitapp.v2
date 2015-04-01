@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="com.diggit.android"
+   package="com.diggit.app"
    android:versionCode="1"
    android:versionName="1.0">
 
@@ -17,7 +17,7 @@
       android:label="@string/app_name"
       android:largeHeap="true">
       <activity
-         android:name=".activities.LaunchActivity"
+         android:name="com.diggit.app.activities.LaunchActivity"
          android:label="@string/app_name"
           android:theme="@style/NoActionBar"
           android:screenOrientation="portrait">
@@ -26,16 +26,16 @@
             <category android:name="android.intent.category.LAUNCHER" />
          </intent-filter>
       </activity>
-      <activity android:name=".activities.LoginActivity"
+      <activity android:name="com.diggit.app.activities.LoginActivity"
           android:theme="@style/NoActionBar"
           android:screenOrientation="portrait"/>
-      <activity android:name=".activities.SelectImageActivity"
+      <activity android:name="com.diggit.app.activities.SelectImageActivity"
           android:theme="@style/NoActionBar"
           android:screenOrientation="portrait"/>
-      <activity android:name=".activities.StudentCardActivity"
+      <activity android:name="com.diggit.app.activities.StudentCardActivity"
           android:theme="@style/NoActionBar"
           android:screenOrientation="portrait"/>
-      <activity android:name=".activities.BowntyActivity"
+      <activity android:name="com.diggit.app.activities.BowntyActivity"
           android:theme="@style/NoActionBar"
           android:screenOrientation="portrait"/>
    </application>

@@ -1,10 +1,9 @@
-package com.diggit.android;
+package com.diggit.app;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
-import com.diggit.android.model.*;
+import com.diggit.app.model.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -28,7 +27,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static com.diggit.android.model.InternalStorage.writeObject;
+import static com.diggit.app.model.InternalStorage.writeObject;
 
 /**
  * Created by TOKB on 13-03-2015.
