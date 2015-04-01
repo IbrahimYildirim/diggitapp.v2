@@ -77,12 +77,8 @@ public class SelectImageActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
-//            Log.d(TAG, "Pic saved");
-//            new SaveImageTask().execute();
             ImageView image = (ImageView)findViewById(R.id.imageSelecterView);
-            File file = new File(SELFIE_PATH);
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            image.setImageBitmap(bitmap);
+            image.setImageBitmap(getImageFromFile());
 
             ViewGroup saveImageCont = (ViewGroup)findViewById(R.id.saveImageContainer);
             if (saveImageCont.getVisibility() == View.GONE){
@@ -97,6 +93,40 @@ public class SelectImageActivity extends Activity {
         }
     }
 
+   public static Bitmap getImageFromFile() {
+      File file = new File(SELFIE_PATH);
+      if (!file.exists()) {
+         Log.i(TAG, "Image file was not found.");
+         return null;
+      }
+      try {
+         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+         float scaleRatio = Math.min(600f / (float) bitmap.getHeight(), 1f);
+
+         Matrix matrix = new Matrix();
+         matrix.preScale(scaleRatio, scaleRatio);
+
+         ExifInterface ei = new ExifInterface(SELFIE_PATH);
+         int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+         Log.d(TAG, "Picture orientation: " + orientation);
+         switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+               matrix.postRotate(90);
+               break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+               matrix.postRotate(180);
+               break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+               matrix.postRotate(270);
+               break;
+         }
+
+         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+      } catch (IOException e) {
+         throw new RuntimeException(e);
+      }
+   }
 
     private class SaveImageTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -108,40 +138,7 @@ public class SelectImageActivity extends Activity {
             return ModelFactory.sendPicture(SelectImageActivity.this);
         }
 
-        private Bitmap getImageFromFile() {
-            File file = new File(SELFIE_PATH);
-            if (!file.exists()) {
-                Log.i(TAG, "Image file was not found.");
-                return null;
-            }
-            try {
-                Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
 
-                float scaleRatio = Math.min(600f / (float) bitmap.getHeight(), 1f);
-
-                Matrix matrix = new Matrix();
-                matrix.preScale(scaleRatio, scaleRatio);
-
-                ExifInterface ei = new ExifInterface(SELFIE_PATH);
-                int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-                Log.d(TAG, "Picture orientation: " + orientation);
-                switch (orientation) {
-                    case ExifInterface.ORIENTATION_ROTATE_90:
-                        matrix.postRotate(90);
-                        break;
-                    case ExifInterface.ORIENTATION_ROTATE_180:
-                        matrix.postRotate(180);
-                        break;
-                    case ExifInterface.ORIENTATION_ROTATE_270:
-                        matrix.postRotate(270);
-                        break;
-                }
-
-                return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         @Override
         protected void onPostExecute(Boolean result) {
