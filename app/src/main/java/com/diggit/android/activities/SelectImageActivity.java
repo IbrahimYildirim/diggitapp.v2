@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.diggit.android.Controller;
 import com.diggit.android.ModelFactory;
@@ -34,9 +35,12 @@ public class SelectImageActivity extends Activity {
     private static final String TAG = SelectImageActivity.class.getSimpleName();
     int TAKE_PHOTO_CODE = 10;
 
+    private ProgressBar mProgressBar;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_picker);
+        mProgressBar = (ProgressBar)findViewById(R.id.progress_bar_picker);
 
         Button takePicture = (Button) findViewById(R.id.takePicture);
         takePicture.setOnClickListener(
@@ -61,6 +65,11 @@ public class SelectImageActivity extends Activity {
         savePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (mProgressBar.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                mProgressBar.setVisibility(View.VISIBLE);
                 Log.d(TAG, "Pic saved");
                 new SaveImageTask().execute();
             }
@@ -134,7 +143,6 @@ public class SelectImageActivity extends Activity {
         protected Boolean doInBackground(Void... params) {
             ProfilePicture profilePicture = ModelFactory.getProfilePicture(SelectImageActivity.this);
             profilePicture.saveImage(getImageFromFile(), SelectImageActivity.this);
-
             return ModelFactory.sendPicture(SelectImageActivity.this);
         }
 
@@ -144,6 +152,7 @@ public class SelectImageActivity extends Activity {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
 
+            mProgressBar.setVisibility(View.INVISIBLE);
             Controller.showStudentCardScreen(SelectImageActivity.this);
         }
     }
