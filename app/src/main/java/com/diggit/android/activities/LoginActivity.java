@@ -11,83 +11,84 @@ import android.widget.*;
 import com.diggit.android.Controller;
 import com.diggit.android.ModelFactory;
 import com.diggit.android.R;
-import com.diggit.android.model.ProfilePicture;
 
 public class LoginActivity extends Activity {
-    private static final String TAG = LoginActivity.class.getSimpleName();
-    ProgressBar mProgressBar;
+   private static final String TAG = LoginActivity.class.getSimpleName();
+   ProgressBar mProgressBar;
 
-    /**
-     * Called when the activity is first created.
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+   /**
+    * Called when the activity is first created.
+    */
+   @Override
+   public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.login);
 
-        mProgressBar = (ProgressBar)findViewById(R.id.progress_bar);
+      mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        final Button loginButton = (Button) findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View clickedView) {
-                        EditText userNameNox = (EditText) findViewById(R.id.username);
-                        EditText passwordBox = (EditText) findViewById(R.id.password);
+      final Button loginButton = (Button) findViewById(R.id.loginButton);
+      loginButton.setOnClickListener(
+            new View.OnClickListener() {
+               @Override
+               public void onClick(View clickedView) {
+                  EditText userNameNox = (EditText) findViewById(R.id.username);
+                  EditText passwordBox = (EditText) findViewById(R.id.password);
 
-                        String brugerId = userNameNox.getText().toString();
-                        String password = passwordBox.getText().toString();
+                  String brugerId = userNameNox.getText().toString();
+                  String password = passwordBox.getText().toString();
 
-                        if (brugerId.isEmpty() || password.isEmpty()){
-                            new AlertDialog.Builder(LoginActivity.this).
-                                    setTitle("Ups").
-                                    setMessage("Udfyldt venligst brugernavn og kode").
-                                    setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
+                  if (brugerId.isEmpty() || password.isEmpty()) {
+                     new AlertDialog.Builder(LoginActivity.this).
+                           setTitle("Ups").
+                           setMessage("Udfyldt venligst brugernavn og kode").
+                           setPositiveButton(
+                                 "OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                        }
-                                    }).show();
-                        }
-                        else {
-                            mProgressBar.setVisibility(View.VISIBLE);
-                            new PerformLoginTask().execute(brugerId, password);
-                        }
-                    }
-                });
-
-        //Set custom font to "Diggit"R Text
-        String fontPath = "fonts/timeburner_regular.ttf";
-        TextView lblDiggit = (TextView) findViewById(R.id.lblDiggitLogin);
-        Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
-        lblDiggit.setTypeface(tf);
-    }
-
-    private class PerformLoginTask extends AsyncTask<String, Void, ModelFactory.LoginResult> {
-        @Override
-        protected ModelFactory.LoginResult doInBackground(String[] params) {
-            return ModelFactory.postToUNILogin(
-                    getApplicationContext(),
-                    params[0],
-                    params[1]);
-        }
-
-        @Override
-        protected void onPostExecute(ModelFactory.LoginResult loginResult) {
-            if (loginResult.wasSuccessful) {
-               ProfilePicture profilePicture = ModelFactory.getProfilePicture(LoginActivity.this);
-
-               boolean needPicture = profilePicture == null || profilePicture.profilePicture == null;
-
-               if (needPicture) {
-                  Controller.showSelectImageScreen(LoginActivity.this);
-               } else {
-                  Controller.showStudentCardScreen(LoginActivity.this);
+                                    }
+                                 }).show();
+                  } else {
+                     mProgressBar.setVisibility(View.VISIBLE);
+                     new PerformLoginTask().execute(brugerId, password);
+                  }
                }
+            });
+
+      //Set custom font to "Diggit"R Text
+      String fontPath = "fonts/timeburner_regular.ttf";
+      TextView lblDiggit = (TextView) findViewById(R.id.lblDiggitLogin);
+      Typeface tf = Typeface.createFromAsset(getAssets(), fontPath);
+      lblDiggit.setTypeface(tf);
+   }
+
+   private class PerformLoginTask extends AsyncTask<String, Void, ModelFactory.LoginResult> {
+      @Override
+      protected ModelFactory.LoginResult doInBackground(String[] params) {
+         return ModelFactory.postToUNILogin(
+               getApplicationContext(),
+               params[0],
+               params[1]);
+      }
+
+      @Override
+      protected void onPostExecute(ModelFactory.LoginResult loginResult) {
+         if (loginResult.wasSuccessful) {
+
+            boolean needPicture = Controller.needPicture(LoginActivity.this);
+
+            if (needPicture) {
+               Controller.showSelectImageScreen(LoginActivity.this);
             } else {
-                Toast.makeText(LoginActivity.this, "Fejl ved login: " + loginResult.errorMessage, Toast.LENGTH_SHORT).show();
+               Controller.showStudentCardScreen(LoginActivity.this);
             }
-            mProgressBar.setVisibility(View.INVISIBLE);
-        }
-    }
+         } else {
+            Toast.makeText(
+                  LoginActivity.this,
+                  "Fejl ved login: " + loginResult.errorMessage,
+                  Toast.LENGTH_SHORT).show();
+         }
+         mProgressBar.setVisibility(View.INVISIBLE);
+      }
+   }
 }

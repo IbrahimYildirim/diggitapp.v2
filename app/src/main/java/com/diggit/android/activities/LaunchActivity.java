@@ -2,11 +2,7 @@ package com.diggit.android.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import com.diggit.android.Controller;
-import com.diggit.android.ModelFactory;
-import com.diggit.android.model.Person;
-import com.diggit.android.model.ProfilePicture;
 
 /**
  * Created by tokb on 30-03-2015.
@@ -19,11 +15,9 @@ public class LaunchActivity extends Activity {
 
 //      Controller.resetSavedInformation(this);
 
-      final Person person = ModelFactory.getPerson(this);
-      ProfilePicture profilePicture = ModelFactory.getProfilePicture(this);
 
-      boolean needLogin = person == null || person.getBrugerid() == null;
-      boolean needPicture = profilePicture == null || profilePicture.profilePicture == null;
+      boolean needLogin = Controller.needLogin(this);
+      boolean needPicture = Controller.needPicture(this);
 
       if (needLogin) {
          Controller.showLoginScreen(this);

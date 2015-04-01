@@ -23,7 +23,7 @@ public class ProfilePicture implements ModelObject {
 
    public ProfilePicture updateProfilePicture(JSONObject json) {
       try {
-         profilePicture = json.getString("profilePicture");
+         profilePicture = getString(json,"profilePicture");
          int start = profilePicture.indexOf(",");
          if (start != -1) {
             profilePicture = profilePicture.substring(start);
@@ -56,5 +56,13 @@ public class ProfilePicture implements ModelObject {
    public Bitmap getImage() {
       byte[] decodedString = Base64.decode(profilePicture, Base64.DEFAULT);
       return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+   }
+
+   private String getString(JSONObject jsonObject, String name) throws JSONException {
+      String value = jsonObject.getString(name);
+      if(value == null ||  value.equals("null")){
+         return "";
+      }
+      return value;
    }
 }
