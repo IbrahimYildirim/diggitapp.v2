@@ -50,8 +50,8 @@ public class Person implements Serializable, ModelObject {
 
    private String getString(JSONObject jsonObject, String name) throws JSONException {
       String value = jsonObject.getString(name);
-      if(value != null && value.equals("null")){
-         return null;
+      if(value == null ||  value.equals("null")){
+         return "";
       }
       return value;
    }
