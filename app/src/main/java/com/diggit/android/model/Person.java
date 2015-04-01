@@ -1,18 +1,14 @@
 package com.diggit.android.model;
 
 import android.content.Context;
-import android.util.Log;
 import com.diggit.android.ModelFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.diggit.android.model.InternalStorage.*;
 
 /**
  * Created by TOKB on 16-03-2015.
@@ -38,10 +34,10 @@ public class Person implements Serializable, ModelObject {
 
    public Person updatePerson(JSONObject jsonObject) {
       try {
-         Navn = jsonObject.getString("Navn");
-         Brugerid = jsonObject.getString("Brugerid");
-         Instnr = jsonObject.getString("Instnr");
-         Foedselsdag = jsonObject.getString("Foedselsdag");
+         Navn = getString(jsonObject, "Navn");
+         Brugerid = getString(jsonObject,"Brugerid");
+         Instnr = getString(jsonObject, "Instnr");
+         Foedselsdag = getString(jsonObject, "Foedselsdag");
 
          creationTime = new SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("creationTime"));
       } catch (JSONException e) {
@@ -50,6 +46,14 @@ public class Person implements Serializable, ModelObject {
          throw new RuntimeException(e);
       }
       return this;
+   }
+
+   private String getString(JSONObject jsonObject, String name) throws JSONException {
+      String value = jsonObject.getString(name);
+      if(value != null && value.equals("null")){
+         return null;
+      }
+      return value;
    }
 
    public String getNavn() {

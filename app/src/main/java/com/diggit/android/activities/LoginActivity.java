@@ -7,15 +7,11 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.diggit.android.Controller;
 import com.diggit.android.ModelFactory;
 import com.diggit.android.R;
+import com.diggit.android.model.ProfilePicture;
 
 public class LoginActivity extends Activity {
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -79,10 +75,16 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPostExecute(ModelFactory.LoginResult loginResult) {
             if (loginResult.wasSuccessful) {
-                Controller.showSelectImageScreen(LoginActivity.this);
+               ProfilePicture profilePicture = ModelFactory.getProfilePicture(LoginActivity.this);
+
+               boolean needPicture = profilePicture == null || profilePicture.profilePicture == null;
+
+               if (needPicture) {
+                  Controller.showSelectImageScreen(LoginActivity.this);
+               } else {
+                  Controller.showStudentCardScreen(LoginActivity.this);
+               }
             } else {
-//                TextView loginResultView = (TextView) findViewById(R.id.loginButtonResult);
-//                loginResultView.setText("Fejl ved login: " + loginResult.errorMessage);
                 Toast.makeText(LoginActivity.this, "Fejl ved login: " + loginResult.errorMessage, Toast.LENGTH_SHORT).show();
             }
             mProgressBar.setVisibility(View.INVISIBLE);
