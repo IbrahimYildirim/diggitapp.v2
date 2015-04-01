@@ -87,16 +87,16 @@
                     android:background="@android:color/white"
                     android:layout_alignParentTop="true"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="reset"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/reset"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="0.06" />
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="reset"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:id="@+id/reset"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_weight="0.06" />-->
 
 
                 <TextView
@@ -113,13 +113,22 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Take Picture"
+                    android:text="&#xf030;"
                     android:id="@+id/takePicture"
                     android:layout_below="@id/lbl_tag_billede"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="40sp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_weight="0.06" />
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/takePicture"
+                    android:text="Tag Billede"
+                    android:textSize="17sp"/>
 
 
             </RelativeLayout>

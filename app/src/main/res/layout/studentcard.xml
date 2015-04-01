@@ -9,7 +9,206 @@
         android:src="@drawable/baggrund"
         android:scaleType="centerCrop" />
 
+    <!--Card Back-->
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/card_back"
+        android:background="@drawable/student_card"
+        android:layout_margin="15dp"
+        android:visibility="invisible"
+        android:alpha="0">
+
+        <!--Header View-->
+        <RelativeLayout
+            android:id="@+id/headerContainerBack"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/header_top">
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_backToFront"
+                android:text="&#xf061;"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/btn_backToFront"
+                android:text="Info"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:layout_marginLeft="50dp"
+                android:gravity="center"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <!--Indhold-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headerContainerBack"
+            android:background="@drawable/background_back">
+
+            <!--Adresse & Telefon-->
+            <LinearLayout
+                android:id="@+id/back_AdrreseOgTelefon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adresse"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:id="@+id/lbl_inst_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GadeNavn Nr \nPost NR, ByNavn\nKommune Navn"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Telefon"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/lbl_inst_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12345678"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Email & CVR-->
+            <LinearLayout
+                android:layout_below="@id/back_AdrreseOgTelefon"
+                android:layout_marginTop="20dp"
+                android:id="@+id/back_emailOgCvr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:id="@+id/lbl_inst_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="email@skole.dk"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CVR"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/lbl_inst_cvr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12345678"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back_contact"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/back_emailOgCvr"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="40dp"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/unic"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--Card Front-->
+    <RelativeLayout
+        android:id="@+id/card_front"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/student_card"
@@ -52,7 +251,7 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/btn_deals"
                 android:layout_toLeftOf="@id/btn_back"
-                android:text="Info"
+                android:text="Studie Kort"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
                 android:gravity="center"
@@ -82,7 +281,7 @@
                 android:scaleType="centerCrop"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:src="@drawable/placeholder"/>
+                android:src="@drawable/placeholder" />
 
             <!--Content Container-->
             <RelativeLayout
@@ -101,12 +300,15 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="isActive"
+                    android:text="Gyldig?"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:id="@+id/isActive"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/gyldig_btn"
+                    android:padding="5dp"
+                    android:textSize="25sp"
                     android:layout_gravity="right" />
 
 
@@ -218,43 +420,43 @@
                     android:layout_marginTop="20dp"
                     android:src="@drawable/logo_white"
                     android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" />
 
 
                 <!--Reset Button -->
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="reset"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@android:color/transparent"
-                    android:id="@+id/reset"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="0.06" />
+                <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="reset"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:id="@+id/reset"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_weight="0.06" />-->
 
 
                 <!--Take Image Button-->
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="&#xf030;"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@android:color/transparent"
-                    android:id="@+id/takePicture"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="0.06" />
+                <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="&#xf030;"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="30sp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:id="@+id/takePicture"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_weight="0.06" />-->
 
-            <!--End of StudentInfoContainer-->
+                <!--End of StudentInfoContainer-->
             </RelativeLayout>
 
-        <!--Image And Content Container-->
+            <!--Image And Content Container-->
         </LinearLayout>
 
-    <!--Student Card-->
+        <!--Student Card-->
     </RelativeLayout>
 
 </RelativeLayout>

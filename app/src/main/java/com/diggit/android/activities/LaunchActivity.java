@@ -1,8 +1,8 @@
 package com.diggit.android.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
+
 import com.diggit.android.Controller;
 import com.diggit.android.ModelFactory;
 import com.diggit.android.model.Person;
@@ -17,7 +17,7 @@ public class LaunchActivity extends Activity {
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      Controller.resetSavedInformation(this);
+//      Controller.resetSavedInformation(this);
 
       final Person person = ModelFactory.getPerson(this);
       ProfilePicture profilePicture = ModelFactory.getProfilePicture(this);

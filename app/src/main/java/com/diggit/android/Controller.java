@@ -1,7 +1,12 @@
 package com.diggit.android;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
+import android.view.animation.LinearInterpolator;
+
 import com.diggit.android.activities.BowntyActivity;
 import com.diggit.android.activities.LoginActivity;
 import com.diggit.android.activities.SelectImageActivity;
@@ -42,6 +47,41 @@ public class Controller  {
          file.delete();
       }
       Controller.showStudentCardScreen(context);
-
    }
+
+    public static void fadeViewin (View v, int delay)
+    {
+        if (v.getVisibility() == View.INVISIBLE){
+            v.setVisibility(View.VISIBLE);
+        }
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v, "alpha", 0.0f, 1.0f);
+        fadeAnim.setDuration(400);
+        fadeAnim.setInterpolator(new LinearInterpolator());
+        fadeAnim.setStartDelay(delay);
+        fadeAnim.start();
+    }
+
+    public static void fadeViewOut (final View v, int delay)
+    {
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(v, "alpha", 0.0f);
+        fadeAnim.setDuration(400);
+        fadeAnim.setInterpolator(new LinearInterpolator());
+        fadeAnim.setStartDelay(delay);
+        fadeAnim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {}
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                v.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {}
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {}
+        });
+        fadeAnim.start();
+    }
 }
