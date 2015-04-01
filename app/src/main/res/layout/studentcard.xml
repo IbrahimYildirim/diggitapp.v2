@@ -277,7 +277,7 @@
                 android:id="@+id/imageView"
                 android:layout_below="@id/top_seperator"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.9"
+                android:layout_weight="1"
                 android:scaleType="centerCrop"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -287,7 +287,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.1">
+                android:layout_weight="1">
 
                 <View
                     android:layout_width="match_parent"
@@ -423,7 +423,7 @@
                     android:layout_alignParentRight="true" />
 
 
-                <!--Reset Button -->
+                <!--Reset Button-->
                 <!--<Button-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->

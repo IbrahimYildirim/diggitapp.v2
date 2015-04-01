@@ -46,7 +46,7 @@ public class Controller  {
       if (file.exists()) {
          file.delete();
       }
-      Controller.showStudentCardScreen(context);
+      Controller.showLoginScreen(context);
    }
 
     public static void fadeViewin (View v, int delay)

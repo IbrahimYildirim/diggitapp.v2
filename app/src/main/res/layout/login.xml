@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/username"
-            android:text="magn3155"
             android:ellipsize="start"
             android:gravity="center"
             android:hint="UNI-C ID"
@@ -61,8 +62,7 @@
             android:gravity="center"
             android:hint="Password"
             android:textColor="@android:color/black"
-            android:id="@+id/password"
-            android:text="Magn3155" />
+            android:id="@+id/password" />
 
     </LinearLayout>
 
@@ -92,5 +92,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/loginButtonResult" />
     </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:id="@+id/progress_bar"/>
 
 </RelativeLayout>

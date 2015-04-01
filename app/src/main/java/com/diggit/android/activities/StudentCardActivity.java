@@ -47,7 +47,14 @@ public class StudentCardActivity extends Activity {
         showFront = true;
 
         setupButtons();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Button isValidButton = (Button) findViewById(R.id.isActive);
+        isValidButton.setText("Gyldig?");
     }
 
     private void setupIfSubscribedInstitution() {
@@ -120,9 +127,6 @@ public class StudentCardActivity extends Activity {
             }
         });
 
-        //Hide Deals for now until next update
-        btnDeals.setVisibility(View.INVISIBLE);
-
         Button isValidButton = (Button) findViewById(R.id.isActive);
         isValidButton.setTypeface(tf);
         isValidButton.setOnClickListener(
@@ -132,6 +136,17 @@ public class StudentCardActivity extends Activity {
                         new IsValidTask().execute();
                     }
                 });
+
+        //Hide Deals for now until next update
+        btnDeals.setVisibility(View.INVISIBLE);
+
+//        Button reset = (Button)findViewById(R.id.reset);
+//        reset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Controller.resetSavedInformation(StudentCardActivity.this);
+//            }
+//        });
     }
 
     private void setupCard() {
